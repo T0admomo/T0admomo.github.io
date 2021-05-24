@@ -476,7 +476,7 @@
                                     
                                     <ul class="list-inline">
                                         <li>Date: May 2021</li>
-                        
+                                        <li>Repository: <a href = 'https://github.com/T0admomo/Topic_modeling_LDA_sentiment_Vadar_nextdoor.com'>Github.com</a> </li>
                                         <li>Collaborators: None</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
@@ -502,21 +502,54 @@
                                     <!-- Project Details Go Here-->
                                     <h2 class="text-uppercase">Binary Classficiation of Fact from Fiction</h2>
                                     <p class="item-intro text-muted">Model Selection with Pipelines</p>
-                                    <p> Describe dataset </p>
+                                    <p> The dataset for this project is composed of reddit posts from two distinct subreddit gathered using 
+                                        the <a href = 'https://github.com/pushshift/api'>pushshift API</a>. In order to simulate factual and fictional content, we used the r/Fact, 
+                                        and r/FakeFact subreddits as sources. Both subreddits are heavily moderated, but neither source is verified. 
+                                        We have to assume that some of the Facts, and FakeFacts are out of place, but that will be for my purposes. 
+                                        I wanted to teach my model to classify posts based on whether or not their source is a trusted one, not whether or not the post is true. 
+                                        The final product will be one of several components in a social media filter intended to block fallacious content. </p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/50_50_Reddit.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Post Lenght Density.png" alt="..." />
-
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/shared_vocab.png" alt="..." />
-
+                                        
+                                    <p class = 'text-uppercase'>Model Selection</p> 
+                                    <p>Initial model selection was conducted using a cleaned corpus deprived of punctuation with no 
+                                        stemming or lemmatization. Pipelines can make it simple to train many models consecutively and 
+                                        compare their outputs. I constructed several functions available in myfunt.py on the github for 
+                                        this project for this purpose that any one is welcome to make use of. I prefer not only to visualize 
+                                        test and train performance, but also the gap between test and train for each model while conducting initial model selections. </p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/test_train_gap.png" alt="..." />
+                                    <p class = 'text-uppercase'> Exploring the Lexicon</p>
+                                    <p>Once we had cleaned punctuation and miscellaneous improperly formatted text from our dataset we began to look at the 
+                                        overlap in most frequently used words in the lexicons of both subreddits. Our goal here was to isolate the most common words 
+                                        shared between both Datasets and remove them from the corpus entirely so as to reduce some dimensionality and increase the 
+                                        separation of our two classes. This dramatically reduced the gap between our Train and Test Accuracy Scores, but did little to improve our overall performance.</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/shared_vocab.png" alt="..." />
+                                    <p class = 'text-uppercase'>Feature Engineering</p>
+                                    <p>During EDA I noticed that while the post lengths appear to have a similar distribution, the differences in density of factual 
+                                        posts with longer text is significant enough for consideration and testing as a feature in our final classification model. The 
+                                        final model will take the output from our binary classifier as a feature along with other info like post length, and presence 
+                                        of a hyperlink.
+                                        <br><br>
+                                        30% of the factual posts have links to sources, while only 5 % of the FakeFacts posts had similar links. I have decided to engineer 
+                                        a feature for Has_link to include in our final filter model. Assessing the type of link is a step to be explored in a latter phase.
+                                        </p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Post Lenght Density.png" alt="..." />
+                                    <p class='text-uppercase'>Model Evaluation</p>
+                                    <p>Using an AUROC curve we can visualize the performance of multiple models on our cleaned and lexiconicly pruned corpus. In the 
+                                        second iteration of this project I will explore the differences in performance when applying stemming vs lemming. The model I 
+                                        selected as performing best in this case was Support Vector Machines, as it displayed the smaller train test gap, but Naive Bayes 
+                                        is a strong second with a higher score and only slightly larger gap. Given the nature of our dataset and the goal of our model, I only 
+                                        really expected to achieve about 80% accuracy with traditional classification models. I am confident with iterative model tuning and additional 
+                                        preprocessing either SVM or NB could reach our target accuracy. Using the output from this model as a feature in a future model, along with other features like post length, 
+                                        has_link etc. may yet allow us to create an adequate content filter without the computationally expensive use of Neural Networks. </p>
+
+                                    
 
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/reddit_results.png" alt="..." />
 
                                     <ul class="list-inline">
-                                        <li>Date: January 2021</li>
-                                        <li>Client: Explore</li>
-                                        <li>Category: Graphic Design</li>
+                                        <li>Date: March 2021</li>
+                                        <li>Repository: <a href = 'https://github.com/T0admomo/BinaryClassification_fact_fiction_Reddit'>Github.com</a> </li>
+                                        <li>Collaborators: None </li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
