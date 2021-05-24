@@ -260,6 +260,22 @@
         <section class="page-section" id="contact">
             <div class="container">
                 <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="team-member">
+                            <img class="mx-auto rounded-circle" src="assets/img/team/1.jpg" alt="..." />
+                            <h4>Parveen Anand</h4>
+                            <p class="text-muted">Lead Designer</p>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+            <div class="container">
+                <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Me</h2>
                     <h3 class="section-subheading text-muted">With any questions on my work, or for consulation with future projects.</h3>
                 </div>
@@ -333,21 +349,135 @@
                                     <!-- Project Details Go Here-->
                                     <h2 class="text-uppercase">Topic Modeling & Simple Sentiment </h2>
                                     <p class="item-intro text-muted"> With Applications and Suggestions for Targeted Campaigns.</p>
-                                    <p> A description of the dataset</p>
-                                    <p class = 'text-uppercase'>Latent Dirichlet Allocations</p>
+                                    <p class = 'text-uppercase'>Inroduction</p>
+                                    <p> The goal of this project was to explore applications of Latent Dirichlet Allocations 
+                                        and Simple Sentiment Analysis in targeted issues based policy campaigns. The issue I chose 
+                                        as a demonstration of these methods is that of homelessness. The dataset created for this 
+                                        project is composed of user posts and comments scrapped from the social media site Nextdoor.com. 
+                                        The size of the dataset was limited by a lack of volunteer accounts in varied regions of Denver, 
+                                        and a limitation in accessing historical data from the source. The final size of the dataset 
+                                        before post-scrape and pre-preprocessing and cleaning, was just above 1,000 posts and 15,000 comments. 
+                                        The goal was to apply LDA in order to correlate the sentiment of user posts with their topical 
+                                        content. Below is an example of our models final output for the broad topic of homelessness nearly as envisioned.</p>
+                                  
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Authors.png" alt="..." />
+                                        <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Locations.png" alt="..." />    
+                                    <p>Next-door has no public API that we could find. Their web interface is also Javascript heavy making selenium our 
+                                        preferred choice of web scraping library for this application. Next-door provides a unique source of textual data 
+                                        to other social media sources in several ways. First, users are required to register their physical 
+                                        address with legal documentation, providing a greatly increased confidence in the accuracy of recorder 
+                                        user geographies. Second, users' access to content is restricted by geography in a way intended to stimulate 
+                                        discussions among neighborhood community members, creating a unique virtual landscape full of content pertaining 
+                                        to local issues. Unlike other social media outlets, next-doors UIX , or perhaps just their stated mission, seem to 
+                                        influence users to provide standard and correctly spelled textual data to a far greater degree than is common with 
+                                        Twitter or Reddit for example. Next-door also does not limit the number of characters per post, and so 
+                                        posts are significantly longer on average. 
+                                    </p>
+                                        <p class = 'text-uppercase'>Latent Dirichlet Allocations</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/LDA_explainer.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>LDA is an unsupervised machine learning model that allows us to extract descriptive topics 
+                                        from textual data. Dirichlet’s are distributions of multinomial distributions represented 
+                                        as simplexes. LDA uses two of these distributions , one to represent the distribution of words to topics, 
+                                        and the other of topics to words. There are few things our model will need from us before training.
+                                        <ul>
+                                            <li>Number of expected topics</li>
+                                            <li>Alpha - number of expected topics per document</li>
+                                            <li>Beta - number of words expected to define each topic</li>
+                                        </ul>
+
+                                        The desired output is a list of human readable topics defined both by their most frequently occurring and most relevant terms.
+                                    </p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/final_model.png" alt="..." />
-                                    <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
+                                    <p>PyLDAvis is a useful library with a singular purpose, the visualization of unsupervised topic 
+                                        models. Below is a pyLDAvis example consisting of the result of our homelessness content modeling. 
+                                        Topic 1 highlighted in red in actual topic index 0. On the right are the words of which the topic 
+                                        is composed. The five most relevant topic terms for topic 0 are help, homeless, need, donate, shelter. 
+                                        From this it is left to the modeler to interpret how to define or classify the topic label. In this 
+                                        example, I labeled topic 0 as “Homeless - Donations and Shelter”, because their are several topics in our 
+                                        dataset pertaining to different aspects of homelessness that we are interested in several of our topic will 
+                                        bare the prefix “Homeless” and irrelevant topics should be filtered out by being assigned Misc. as their label.This can be done with a simple python dictionary. </p>
+                                    
+                                    <p class = 'text-uppercase'>Preprocessing</p>
+                                    <p>For topic modeling my dataset I decided to use all post and comment data for training input. 
+                                        I constructed my data frame so that each comment has an id# which pertains 
+                                        to its originating post. Imagine an example when a post's comments take the topic of 
+                                        discussion far from where it began. This happens very often in social media forums. 
+                                        We don’t want our pipeline to misrepresent the relationship between the emotional content 
+                                        of a post's comments, and the topic of the post, so we include all post and comment data in 
+                                        our LDA corpus. While this may mean that our topics appear less applicable to their specific 
+                                        posts, they should apply more coherently with the user dialogue encompassed by the post and 
+                                        comments combined.
+                                        <br><br>
+                                        The most significant of the benefits to come from a week's labour building a web scraper was the 
+                                        quality and cleanliness with which text was pulled into my initial data frame. I had no line breaks 
+                                        to manage, minimal misspellings, and no html tags to clean. I still had to de-accent , lowercase, and inspect 
+                                        for token misspellings and acronyms. Something I failed to utilize here was the functionality offered by NLTK’s multiword 
+                                        expression tokenizer, which allows for the creation of custom word grams. Using MWE I would focus on domain specific compound 
+                                        words and acronyms in order to better inform my model.   
+                                        <br><br>
+                                        I chose to reduce some of the complexity of the corpus through lemmatization, and by focusing on parts of speech likely to inform the 
+                                        topic of the text. For example, conjunctions largely do nothing to inform the topic of a conversation. Since LDA will define our topics 
+                                        by the most frequently occurring and relevant terms, we don’t want it getting confused by terms like, ‘and’, ‘but’, ’to’, and others. 
+                                        On the other hand, while next-door content is longer on average than that of twitter, I was still dealing with what would be classified as 
+                                        short text ( primarily under 150 words ). This being the case, I wanted to refrain from excessively reducing the vocabulary of the corpus. 
+                                        To balance these two concerns, nouns, adjectives, verbs, and adverbs were all used in our final topic modeling process.
+                                        </p>
+                                    <p class = 'text-uppercase'>Grid Search</p> 
+                                    <p>Tuning LDA models presents challenges because of its unsupervised nature, and because we are dealing with subjective interpretations 
+                                        of  textual data. In this context we don’t have a metric to optimize for, and the metrics we use to evaluate topic models 
+                                        don’t really provide insight into the human readability or application of the topical output. Coherence is a measure 
+                                        of the semantic similarity between high scoring words within a single topic. This can help us determine which topics are interpretable 
+                                        and topics that are merely byproducts of statistical inference. Log perplexity is a measure of the degree to which your model is confused 
+                                        by new data. Here a lower well below 0 is desirable, but again we see that this doesn’t measure the actual interpretability of our topics, 
+                                        for now, we still need a human for that.
+                                        <br><br>
+                                        Here is one of several of my creative attempts to visualize model tuning results.
+                                    </p>
+                                    
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/tunning_results_2-6_topics.png" alt="..." />
-                                    <p class = 'text-uppercase'>Results</p>
-                                    <p> Words about the results and simple senmtiment analysis</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Authors.png" alt="..." />
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Locations.png" alt="..." />
+                                    <p>The best place to start is by considering the distribution of your topics and words to topics. 
+                                        Are the uniform or asymmetrical? For my content, I deduced that since our posts varied quite 
+                                        distinctly in length that the number of words in each post which retained to its topic would vary 
+                                        significantly, and also that some of my topics would not have the same number of words to define them 
+                                        semantically as others ( example: [cat, dog, pet ],[homeless, shelter, volunteer, donate, zoning]) with 
+                                        this assumption we expected our model to perform better with the Gensim preset of ‘asymmetrical’ for the beta 
+                                        parameter. For alpha, I deduced that the short text and social media orgigins of the text data implied that 
+                                        each document likely contained few, if not just one topic per document. 
+                                        This too proved to be a useful deduction, as our final alpha parameter was 0.15.
+                                        <br><br>
+                                        Returning to the hyper parameters I mentioned earlier, Alpha, Beta, and N_topics, I want to add that chunk size, or the 
+                                        number of randomly selected documents to include in each successive model training iteration, similar to batch size in 
+                                        tensorflow and keras libraries. When working with data other than textual data, the final selection of batch size is often 
+                                        the result of a compromise between computational energy usage(ex. image data ) and the overall size of ones dataset 
+                                        ( risk : overfitting ).In the case of textual data I found that it the selection of chunk size has a distinctly noticeable 
+                                        effect on model output. 
+                                        <br><br>
+                                        I suggest that other practitioners consider the size of their individual  documents, the degree of 
+                                        similarity/dissimilarity of lexicon from document to document in randomly selected samples. For example, 
+                                        while training our topic model, we found a small chunk size, and an increased number of training passes to be ideal for 
+                                        clarity of model output. Chunksizes less than 60 consistently produced more coherent topics 
+                                        while chunk sizes greater than 60 consistently confused the target topic of homelessness with other content. 
+                                    </p>
+                                    <p class = 'text-uppercase'>Conclusions</p>
+                                    <p> While I am happy with that data procured from Next-door, a lack of volunteers and restrictions on searching historical data created a 
+                                        shortage of relevant content to work with that caused significant difficulties throughout. Most problematically , I was unable to remove a 
+                                        sufficient number of stop words from the corpus to sufficiently clarify the output topics due to the limited size of the model vocabulary.
+                                        <br><br>
+                                        LDA on its own is a powerful tool to provide insight into the topical content of textual data, however, it has limitations 
+                                        on short text that I plan to address in future iterations through the application of Gibbs sampling 
+                                        methods. IDA2vec word embeddings would allow our model to utilize bidirectional word embeddings to inform each 
+                                        topic as well. 
+                                        <br><br>
+                                        The results of our model do many accurate classification labels, but with too many inaccuracies to really on for the creation of a labeled dataset. 
+                                        To say nothing of the limitations of simple sentiment analysis, the application of which would require creation of a domain specific word count dictionary. 
+                                        The output of an LDA model without Gibbs sampling seems to be insufficient for reliable use in targeted campaigns , but a fast 
+                                        and easy way to become familiar with the general content of a large corpus. 
+                                        </p>
+                                    
                                     <ul class="list-inline">
-                                        <li>Date: January 2021</li>
-                                        <li>Client: Threads</li>
-                                        <li>Category: Illustration</li>
+                                        <li>Date: May 2021</li>
+                        
+                                        <li>Collaborators: None</li>
                                     </ul>
                                     <button class="btn btn-primary" data-dismiss="modal" type="button">
                                         <i class="fas fa-times mr-1"></i>
@@ -413,10 +543,11 @@
                                     <p class="item-intro text-muted">Lorem ipsum dolor sit amet consectetur.</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Heatmap.png" alt="..." />
                                     <p>Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!</p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Basement and AC.png" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/All_features.jpg" alt="..." />
                                     <p> Inspecting for Co linearity </p>
-                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Basement & Garage.png" alt="..." />
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/With_features_kde.jpg" alt="..." />
                                     <p>Predictions</p>
+                                    <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/No_features_kde.jpg" alt="..." />
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/Predictions Vs Reality.png" alt="..." />
                                     <p>It is possible</p>
                                     <img class="img-fluid d-block mx-auto" src="assets/img/portfolio/collaboration.png" alt="..." />
